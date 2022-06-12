@@ -27,6 +27,7 @@ In each example below, the time intervals in the Interval_count.js file have bee
 
 - **Django_Projects\django_interval_count**:
 > - contains a project with the **Django Framework v4.0** and the **django-auto-logout v0.5** package
+> - contains a **SQLite** database named "db_interval_count.sqlite3"
 > - the maximum active session time has been set to 30 minutes
 > - the maximum idle time has been set to 5 minutes
 
@@ -37,3 +38,5 @@ In each example below, the time intervals in the Interval_count.js file have bee
 **Django**: https://www.djangoproject.com/
 
 **django-auto-logout**: https://pypi.org/project/django-auto-logout/
+
+**SQLite**: https://www.sqlite.org/index.html
