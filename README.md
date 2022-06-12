@@ -13,7 +13,9 @@ In that folder there is also another file, otherscripts.js, with a date format c
 
 ---
 # Examples
-Some usage examples are also available:
+Some usage examples are also available below:
+
+In each example below, the time intervals in the Interval_count.js file have been configured differently.
 
 - **HTML_Projects\Interval_Count folder**:
 > - contains two html files as examples of applicability (*index1.html*, *index2.html*)
@@ -22,6 +24,16 @@ Some usage examples are also available:
 > 
 > **Note:** *I recommend using the Mozila Firefox browser, because between it and other browsers I tested (Microsoft Edge and Google Chrome) it was the one I got a satisfactory result of viewing this test directly in the html.*
 
+
+- **Django_Projects\django_interval_count**:
+> - contains a project with the **Django Framework v4.0** and the **django-auto-logout v0.5** package
+> - the maximum active session time has been set to 30 minutes
+> - the maximum idle time has been set to 5 minutes
+
 ---
 # Resources
-Script available at: https://www.w3schools.com/howto/howto_js_countdown.asp
+**Countdown Time** script available at: https://www.w3schools.com/howto/howto_js_countdown.asp
+
+**Django**: https://www.djangoproject.com/
+
+**django-auto-logout**: https://pypi.org/project/django-auto-logout/
