@@ -1,0 +1,63 @@
+:root {
+    --cor-primaria: #1f8752; /*#009649;*/
+    --cor-secundaria: #f5f5f5;
+}.sidenav {
+	height: 100%;
+	/*width: 20px;*/
+  	position: fixed;
+  	z-index: 1;
+  	top: 0;
+  	left: 0;
+  	background-color: #f5f5f5;
+  	overflow-x: hidden;
+  	padding-top: 20px;
+}
+
+.sidenav-transition {
+	height: 100%;
+	width: 250px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #f5f5f5;
+	overflow-x: hidden;
+	padding-top: 20px;
+	transition: 0.5s;
+}
+
+.sidenav li {
+	/*padding: 6px 8px 6px 16px; */
+	text-decoration: none;
+	/*font-size: 25px; */
+	color: #616161;
+	display: block;
+}
+
+.sidenav-transition li {
+	/*padding: 6px 8px 6px 16px; */
+	text-decoration: none;
+	/*font-size: 25px; */
+	color: #515151;
+	display: block;
+	transition: 0.3s;
+}
+
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+
+.main {
+	margin-left: 20px; /* Same as the width of the sidenav */
+ 	/*font-size: 28px; /* Increased text to enable scrolling */
+ 	padding: 0px 10px;*/
+
+	/*transition: margin-left .5s;
+	padding: 16px;*/
+}
+
+@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}
+}

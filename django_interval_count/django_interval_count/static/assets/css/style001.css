@@ -1,0 +1,172 @@
+.distance_left_5 {
+	padding-left: 5px;
+}
+
+.distance_left_10 {
+	padding-left: 10px;
+}
+
+.distance_left_15 {
+	padding-left: 15px;
+}
+
+.font_9{
+	font-size: 9px;
+}
+
+.font_10{
+	font-size: 10px;
+}
+
+.font_11{
+	font-size: 11px;
+}
+
+.font_12{
+	font-size: 12px;
+}
+
+.font_13{
+	font-size: 13px;
+}
+
+.font_14{
+	font-size: 14px;
+}
+
+.font_15{
+	font-size: 15px;
+}
+
+.font_16{
+	font-size: 16px;
+}
+
+.font-01{
+	font-size: 10%;
+}
+
+.font-02{
+	font-size: 20%;
+}
+
+.font-03{
+	font-size: 30%;
+}
+
+.font-04{
+	font-size: 40%;
+}
+
+.font-05{
+	font-size: 50%;
+}
+
+.font-06{
+	font-size: 60%;
+}
+
+.font-07{
+	font-size: 70%;
+}
+
+.font-08{
+	font-size: 80%;
+}
+
+.font-09{
+	font-size: 90%;
+}
+
+.font-11{
+	font-size: 110%;
+}
+
+.font-12{
+	font-size: 120%;
+}
+
+.font-13{
+	font-size: 130%;
+}
+
+.font-14{
+	font-size: 140%;
+}
+
+.font-15{
+	font-size: 150%;
+}
+
+.menu_esquerdo {
+	list-style-type: none
+}
+
+.menu_esquerdo a{
+	color: inherit;
+}
+
+.texto_com_recuo_esquerdo_justificado {
+	padding-left: 5%; /* Parágrafo*/
+	padding-right: 5%;
+	padding-top: 5%;
+	padding-bottom: : 5%;
+	text-align: justify;
+}
+
+.texto_citação {
+	font-size: 80%;
+	padding-left: 5%;
+	padding-right: 5%;
+	text-align: justify;
+	font-style: italic;
+}
+
+.area-fixed {
+	padding-top: 10px;
+	padding-bottom: 0px;
+	position: fixed;
+	background-color: rgb(255,255,255);
+	width: 100%;
+}
+
+.area-fixed-top-right {
+	padding-top: 80px;
+	padding-bottom: 0px;
+	margin-right: 0px;
+	position: fixed;
+	background-color: rgb(255,255,255);
+	width: 100%;
+}
+
+.tittle_personalizado_1 {
+	font-weight: bold;
+}
+
+.link_personalizado_1 li{
+	list-style-type: none;
+}
+
+a.link_personalizado_2 {
+	color: blue;
+}
+
+.link_personalizado_1 li:before{
+	content: '';
+	display: inline-block;
+	height: 5px;
+	width: 5px;
+	background-size: 5px;
+	background-image: url({% static 'images/btn_mark_001.png' %});
+	background-repeat: no-repeat;
+	margin-right: 5px;
+}
+
+.btn_pequeno {
+	width: 2%;
+	white-space: normal;
+}
+
+.btn_medio {
+	width: 50%;
+}

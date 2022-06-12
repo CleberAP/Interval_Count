@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+{% load static %}
+{% load template_filters %}
+<head>
+	{% block title %}<title>Interval Count</title>{% endblock %}
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js"></script>
+<!-- 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+ -->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/Bootstrap4/css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/Bootstrap4/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style001.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style002_sidenav.css' %}">
+	<script src="{% static 'assets/js/style002_sidenav_ViewOrHide.js' %}"></script>
+	
+	<script src="{% static 'assets/Bootstrap4/js/jquery3.js' %}"></script>
+	<script src="{% static 'assets/Bootstrap4/js/jquery3.min.js' %}"></script>
+	<script src="{% static 'assets/Bootstrap4/js/bootstrap.js' %}"></script>
+	<script src="{% static 'assets/Bootstrap4/js/popper.min.js' %}"></script>
+
+</head>
+<body class="container-fluid" onload="OpenOrCloseNav()">
+	
+	<!-- Clear data_session -->
+	<!-- {{ request.session.clear_expired }} -->
+	{% include "menu.html" %}
+	
+	{% block sidebar %}
+	<div class="sidenav-transition" id="mySidenav" style="margin-top:65px;" >
+		<!-- Menu lateral fixo com <ul>, .nav e fixed-top c -->
+		<ul class="menu_esquerdo">			
+			{% if user.is_superuser or user|isin_group:"AdministrativoA" %}
+				<li><a  href=""><i>Refresh Inative Status</i></a></li>
+				<hr>
+			{% endif %}
+
+			<p><i>Opções a listar</i></p>
+		</ul>	
+	</div>
+	{% endblock %}
+
+	<div style="margin-top:65px;">
+
+		<div class="sidenav" style="margin-top:65px;">
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<span id="mySpan" style="font-size:32px; cursor:pointer; color:#616161; padding-left:5px; padding-right:5px;" onclick="OpenOrCloseNav()"> > </span>
+		</div>
+
+		<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style='padding-left: 30px; padding-top: 10px;'>
+
+			
+			{{ redirect_to_login_immediately }}
+
+			{% for message in messages %}
+			<div class="message {{ message.tags }}">
+				<div class="alert alert-warning alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					{{ message }}
+				</div>
+			</div>
+			{% endfor %}
+
+			{% block content %}{% endblock %}	
+
+			{% block pagination %}
+				<!--  if is_paginated  
+								
+				<div class="pagination">
+					!-- 
+					<span class="step-links">
+					--
+					<span class="page-links"> 
+				-->
+
+				{% if page_obj.has_other_pages %}
+				<div class="text-center">
+            		<ul class="pagination pagination-lg text-center">
+						{% if page_obj.has_previous %}
+							<!--<a class="btn" href="?page=1">&laquo; Primeira-->
+						<!--
+							<li><a class="btn" href="{{ request.path }}?page=1{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" title="Primeira" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/skip-back-line.png' %}" alt="Próxima" style="width:60%;"></a></li>
+						-->
+							<!--
+							<a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Anterior</a>
+							
+							<a class="btn" href="?page=1" title="Primeira" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/skip-back-line.png' %}" alt="Próxima" style="width:60%;"></a> 
+														
+							<a class="btn" href="?page={{ page_obj.previous_page_number }}" title="Anterior" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/arrow_left_s_line.png' %}" alt="Anterior" style="width:80%;"></a>
+							-->
+						<!--	
+							<li><a class="btn" href="{{ request.path }}?page={{ page_obj.previous_page_number }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" title="Anterior" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/arrow_left_s_line.png' %}" alt="Anterior" style="width:80%;"></a></li>
+						-->
+							<li><a class="btn" href="?page={{ page_obj.previous_page_number }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" style="font-size: 80%;">&laquo;</a></li>
+		                {% else %}
+		                    <li class="disabled"><span>&laquo;</span></li>
+						{% endif %}
+
+						{% if start_index %}
+						    <li><a class="btn" href="?page={{ start_index }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" style="font-size: 80%;"><span style="color: blue; font-weight: bold;">{{ start_index }}</span></a></li>
+						    <li class="disabled"><span>&mldr;</span></li>
+						{% endif %}
+
+						<!-- 
+						{% if start_index %}
+						    <li><a href="?page={{ start_index }}">{{ start_index }}</a></li>
+						    <li class="disabled"><span>&mldr;</span></li>
+						{% endif %}
+						
+						{% for i in page_range %}
+		                    {% if articles.number == i %}
+		                        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+		                    {% else %}
+		                        <li><a href="?page={{ i }}
+		                            {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+		                    {% endif %}
+		                {% endfor %}
+
+		                <span class="current">
+						-->
+						
+						{% for i in page_range %}
+		                    {% if page_obj.number == i %}
+		                        <!--<li class="active"><u><span>{{ i }} <span class="sr-only">(current)</span></span></u></li>-->
+		                        <li class="btn"><u><b><span>{{ i }}</span></b></u></li>
+		                    {% else %}
+		                        <li><a class="btn" href="?page={{ i }}
+		                            {%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" style="font-size: 80%;">{{ i }}</a></li>
+		                    {% endif %}
+		                {% endfor %}
+		                
+						{% if page_obj.has_next %}
+							<!--
+							<a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Próxima</a>
+							
+							<a class="btn" href="?page={{ page_obj.next_page_number }}" title="Próxima" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/arrow_right_s_line.png' %}" alt="Próxima" style="width:80%;"></a>
+							
+							<a class="btn" href="?page={{ page_obj.paginator.num_pages }}" title="Última" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/skip-forward-line.png' %}" alt="Última" style="width:60%;"></a>
+							-->
+						<!--
+							<li><a class="btn" href="{{ request.path }}?page={{ page_obj.next_page_number }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" title="Próxima" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/arrow_right_s_line.png' %}" alt="Próxima" style="width:80%;"></a></li>
+							
+							<li><a class="btn" href="{{ request.path }}?page={{ page_obj.paginator.num_pages }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" title="Última" style="padding-left:0px; padding-right:0px; padding-bottom: 10px;"><img src="{% static 'images/skip-forward-line.png' %}" alt="Última" style="width:60%;"></a></li>
+						-->
+						{% endif %}
+
+						<!--
+						&nbsp;
+						<li>
+							<span class="btn" style="margin-bottom:0px; padding-bottom:0px; padding-bottom: 10px;"> 
+							--<u><i>Página</i> <b>{{ page_obj.number }}</b> <i>de</i> <b>{{ page_obj.paginator.num_pages }}</b></u>.--
+							<i>de</i> &nbsp;<b>{{ page_obj.paginator.num_pages }}</b>
+						</span>
+						</li>
+						-->
+
+						<!--
+						{% if articles.has_next %}
+		                    {% if end_index %}
+		                        <li class="disabled"><span>&mldr;</span></li>
+		                        <li><a href="?page={{ end_index }}">{{ end_index }}</a></li>
+		                    {% endif %}
+		                    <li><a href="?page={{ articles.next_page_number }}
+		                        {% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a></li>
+		                {% else %}
+		                    <li class="disabled"><span>&raquo;</span></li>
+		                {% endif %}
+
+						{% if page_obj.has_next %}
+		                    {% if end_index %}
+		                        <li class="disabled"><span>&mldr;</span></li>
+		                        <li><a href="?page={{ end_index }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}">{{ end_index }}</a></li>
+		                    {% endif %}
+		                    <li><a href="?page={{ page_obj.next_page_number }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}">&raquo;</a></li>
+		                {% else %}
+		                    <li class="disabled"><span>&raquo;</span></li>
+		                {% endif %}
+						-->
+						{% if page_obj.has_next %}
+		                    {% if end_index %}
+		                        <li class="disabled"><span>&mldr;</span></li>
+		                        <li><a class="btn" href="?page={{ end_index }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" style="font-size: 80%;"><span style="color: red; font-weight: bold;">{{ end_index }}</span></a></li>
+		                    {% endif %}
+		                    <li><a class="btn" href="?page={{ page_obj.next_page_number }}{%if request.GET.searched %}&searched={{ request.GET.searched }}{% endif %}{%if request.GET.searched2 %}&searched2={{ request.GET.searched2 }}{% endif %}" style="font-size: 80%;">&raquo;</a></li>
+		                {% else %}
+		                    <li class="btn disabled"><span>&raquo;</span></li>
+		                {% endif %}
+					</ul>
+				</div>
+				<!--
+					</span>
+				</div>
+				-->
+				{% endif %}
+			
+			{% endblock %}
+
+		</div>
+		
+	</div>
+</body>
+<footer>
+	<!-- END Content -->
+	{% block footer %}
+
+	<input type="hidden" id="time_sessionEnd" name="time_sessionEnd" value="{{ seconds_until_session_end }}" style='width:300px; padding-left: 40px;' class="texto_com_recuo_esquerdo_justificado">
+	<input type="hidden" id="time_sessionIdleEnd" name="time_sessionIdleEnd" value="{{ seconds_until_idle_end }}" style='width:300px; padding-left: 40px;' class="texto_com_recuo_esquerdo_justificado">
+
+	<br>
+			
+		{% for key, value in request.session.items %}
+			{% if key == 'django_auto_logout_last_request' %}
+				<input type="hidden" id="initial_date_inactive_session" name="initial_date_inactive_session" value="{{ value }}" style='width:300px; padding-left: 40px;'>
+			{% endif %}
+		{% endfor %}
+	{% endblock %}
+
+</footer>
+
+<script type="text/javascript">
+
+	
+	function myFunction(field_id) {
+		var x = document.getElementById(field_id);
+		
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+
+</script>
+<script src="{% static 'assets/js/interval_count.js' %}"></script>
+
+</html>
