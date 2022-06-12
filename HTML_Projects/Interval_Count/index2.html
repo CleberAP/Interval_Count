@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CountInterval</title>
+
+	<script src="Assets/javascript/otherscripts.js"></script>
+	
+	<style type="text/css">
+
+		.botao {
+			border: 1px solid transparent;
+			border-color: gray;
+			cursor: pointer;
+			margin-top: 3px;
+			margin-bottom: 3px;
+			padding: 3px;
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		.danger {
+			background-color: red;
+			color: white;
+			font-weight: bold;
+		}
+
+		.fonte_reduzida {
+			font-size: 85%;
+		}
+
+		.row {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-wrap: wrap;
+			flex-wrap: wrap;
+			margin-right: 5px;
+			margin-left: 5px;
+		}
+
+		.row-column {
+			-ms-flex: 0 0 50%;
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
+
+		.warning {
+			background-color: orange;
+			color: white;
+			font-weight: bold;
+		}
+
+
+	</style>
+
+</head>
+<body onload="getCurrentDate_toUTCString();">
+<!--
+<body>
+-->
+	<div class="row" style='background-color: black; color: white; padding: 1px;'>
+		<div class="column" style="text-align: center;">
+			<h3>Contador de Tempo</h3>
+			<p class="bg-info text-white text-right" id="displaySessionTimer" style="font-size: 70%; padding: 3px;" >
+				<!-- Display do elemento contador de sessão -->
+				<b>Conexão: </b>
+				<span id="countDownSessionExpireTimer"></span>
+
+				<br>
+
+				<!-- Display do elemento contador de inatividade -->
+				<b>Inatividade: </b>
+				<span id="countDownInactiveSessionExpireTimer"></span>
+			</p>
+		</div>
+		<div class="column" style="padding-left: 10px;">
+			<p style="font-size: 90%;">
+				Neste exemplo os contadores também são inicializados ao carregar a tela, mas implementamos 
+				um botão para simular que o usuário tenha <br>utilizado uma funcionalidade da aplicação, ou
+				seja, saindo da inatividade de modo que apenas o contador de inatividade seja reinicializado.
+				<br>
+				Estamos simulando uma aplicação de Login que fornece duas variáveis de controle com os respectivos valores:
+				<br>a hora da última requisição;
+				<br>e os segundos restantes até o término da sessão. 
+			</p>
+		</div>
+	</div>
+	
+	<div style="padding-left: 20px;">
+		<hr>
+
+		<div class="row">
+			<div class="column">
+				<h3>Tempo limite da sessão</h3>
+				<input type="text" id="time_sessionEnd" value="1800" style="width:100%; text-align:center; padding:5px;">
+			</div>
+			<div  class="column" style="padding-left: 20px; padding-right: 20px;">
+				<h3>Tempo limite de inatividade</h3>
+				<input type="text" id="time_sessionIdleEnd" value="300" style="width:100%; text-align:center; padding:5px;">
+			</div>
+			<div  class="column" style="padding-left: 20px;">
+				<h3>Reinicialização</h3>
+				<p>Para reinicializar sete os valores ao lado e atualize a página.</p>
+			</div>
+		</div>
+		<div>
+			<p>Valor em segundos, resultado de cada minuto multiplicado por 60 segundos</p>
+			<p>Ex: 30 minutos vezes 60 segundos = 1800 segundos</p>
+			<p class="fonte_reduzida">
+				<b>Nota 1:</b> <i>O script interpretará segundos. Caso deseja inserir milissegundos use notação de vírgula ',' ou de ponto '.' como nos exemplos a seguir:</i>
+			</p>
+			<p class="fonte_reduzida" style="padding-left: 30px;">
+				1800<br>1800,22<br>1800.22
+			</p>
+			<p class="fonte_reduzida">
+				<b>Nota 1:</b> <i>Alguns frameworks utilizam bibliotecas, middleware etc, contendo milissegundos. Ex:</i>
+			</p>
+			<p class="fonte_reduzida" style="padding-left: 30px;">
+				<a href="https://pypi.org/project/django-auto-logout/" target="_blank">django_auto_logout</a>
+			</p>
+
+		</div>
+		
+		<hr>
+		
+		<div>
+			<h3>Data e hora para a contagem (formato TIMESTAMP)</h3>
+		</div>
+		<div class="row">
+			<div class="column">
+				<input type="text" id="initial_date_inactive_session" value="" style="width:300px; text-align:center; padding:5px;">
+			</div>
+			<div class="column" style="padding-left: 20px;">
+				<button class="botao" onclick="appSimulation()">Usuário faz algo*</button>
+				<p class="fonte_reduzida">* Simula usuário utilizando alguma funcionalidade, deixando de estar inativo.</p>
+			</div>
+		</div>
+		<hr>
+	</div>
+
+</body>
+
+<script src="Assets/javascript/interval_count.js"></script>
+
+</html>
