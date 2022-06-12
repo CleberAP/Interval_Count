@@ -30,6 +30,8 @@ In each example below, the time intervals in the Interval_count.js file have bee
 > - contains a **SQLite** database named "db_interval_count.sqlite3"
 > - the maximum active session time has been set to 30 minutes
 > - the maximum idle time has been set to 5 minutes
+> 
+> **Note:** To test click on Login and fill the user credentials with 'Admin' and password with '123'
 
 ---
 # Resources
