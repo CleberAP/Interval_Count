@@ -18,6 +18,7 @@ Some usage examples are also available:
 - **HTML_Projects\Interval_Count folder**:
 > - contains 2 html files as examples of applicability (index1.html, index2.html)
 > - copy from **Assets** folder
+> - In the index2 file I implemented a "User does something" button to simulate user action that affects the idle time counter.
 > 
 > **Note:** *I recommend using the Mozila Firefox browser, because between it and other browsers I tested (Microsoft Edge and Google Chrome) it was the one I got a satisfactory result of viewing this test directly in the html.*
 
